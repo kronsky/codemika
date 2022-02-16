@@ -1,4 +1,5 @@
-# Ссылка на UML: ***
+# Ссылка на UML:
+# https://drive.google.com/file/d/1cjCzLJ2TGlHv-aBguzVDfppf7Szdu_uH/view?usp=sharing
 
 class User:
     __last_id = 0
@@ -27,12 +28,12 @@ class User:
             print('=> Пользователь', self.name, 'не зачислен на курс', course.name)
 
     # метод получения словаря курсов с оценками, на которые зачислен пользователь
-    def get_enrollment(self):
+    def get_enrollment_dict(self):
         return str(self.__enrollment_courses)
 
     # метод получения спика курсов, на которые зачислен пользователь
-    # def get_enrollment(self):
-    #     return list(self.__enrollment_courses.keys())
+    def get_enrollment_list(self):
+        return list(self.__enrollment_courses.keys())
 
     # метод получения итоговой оценки
     def get_grade(self, cource):
@@ -77,9 +78,11 @@ user3.grade(2, physics)         # user3 не зачислен на курс по
 
 # инфа по пользователям
 print()
-print(user1, ', зачислен на курсы: ', user1.get_enrollment(), sep='')
-print(user2, ', зачислен на курсы: ', user2.get_enrollment(), sep='')
-print(user3, ', зачислен на курсы: ', user3.get_enrollment(), sep='')
+print(user1, ', зачислен на курсы: ', user1.get_enrollment_dict(), sep='')
+print(user2, ', зачислен на курсы: ', user2.get_enrollment_dict(), sep='')
+print(user3, ', зачислен на курсы: ', user3.get_enrollment_dict(), sep='')
+print()
+print(user1, ', зачислен на курсы: ', user1.get_enrollment_list(), sep='')
 
 # получение оценки пользователя за курс
 print()
