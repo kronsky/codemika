@@ -16,7 +16,7 @@ counter = 0
 # запись события в log файл
 def wrile_file(line):
     with open('homework-22-log.txt', mode='a') as file:
-        time = str(datetime.datetime.now().strftime(("%d.%m.%Y %H:%M:%S")))
+        time = str(datetime.datetime.now().strftime (("%d.%m.%Y %H:%M:%S")))
         file.writelines(time + ' ' + line)
 
 
