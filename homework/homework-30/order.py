@@ -1,17 +1,30 @@
+import datetime
+
+
 class Order:
     __last_id = 0
+    __orders = dict()
 
-    def __init__(self):
+    def __init__(self, user):
         Order.__last_id += 1
-        self.id = Order.__last_id
-        self.user = None
+        self.__id = Order.__last_id
+        self.user = user
+        self.order_list = []
+        self.__date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
 
+    def __str__(self):
+        return 'id=' + str(self.__id) + ',' + str(self.user) + ',' + str(self.order_list)
 
-class OrderDetails:
-    __last_id = 0
+    def add_item(self, item):
+        self.order_list.append(item)
 
-    def __init__(self):
-        OrderDetails.__last_id += 1
-        self.id = OrderDetails.__last_id
-        self.order = None
-        self.item = None
+    def remove_item(self, item):
+        self.order_list.remove(item)
+
+    def bay(self):
+        Order.__orders[self.__id] = self
+
+    @staticmethod
+    def get_orders():
+        return Order.__orders
+

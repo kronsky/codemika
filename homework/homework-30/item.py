@@ -1,7 +1,3 @@
-import re
-import datetime
-
-
 class Item:
     __last_id = 0
     __items = dict()
@@ -15,7 +11,7 @@ class Item:
         Item.__items[self.__id] = self
 
     def __str__(self):
-        return str(self.__id) + '. ' + str(self.title)
+        return 'id=' + str(self.__id) + ',' + str(self.title)
 
     @property
     def price(self):

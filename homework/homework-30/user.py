@@ -16,7 +16,7 @@ class User:
         User.__users[self.__id] = self
 
     def __str__(self):
-        return str(self.__id) + '. ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone)
+        return 'id=' + str(self.__id) + ',' + str(self.name) + ',' + str(self.surname) + ',' + str(self.phone)
 
     @property
     def phone(self):
