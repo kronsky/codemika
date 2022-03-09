@@ -23,7 +23,10 @@ class Item:
         try:
             self.__price = int(price)
         except ValueError:
-            raise ValueError('Invalid prise')
+            raise ValueError('Invalid price')
+
+    def get_id(self):
+        return self.__id
 
 
 class ItemList:

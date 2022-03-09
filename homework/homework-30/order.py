@@ -16,13 +16,20 @@ class Order:
         return 'id=' + str(self.__id) + ',' + str(self.user) + ',' + str(self.order_list)
 
     def add_item(self, item):
-        self.order_list.append(item)
+        # добавляем id итема в список заказа
+        self.order_list.append(item.get_id())
 
     def remove_item(self, item):
         self.order_list.remove(item)
 
     def bay(self):
+        # якобы покупка
+        # запись ордера в словарь
         Order.__orders[self.__id] = self
+
+    @staticmethod
+    def get_last_id():
+        return Order.__last_id
 
     @staticmethod
     def get_orders():

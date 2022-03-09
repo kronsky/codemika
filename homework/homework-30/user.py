@@ -54,6 +54,9 @@ class User:
         else:
             raise ValueError('Invalid user surname')
 
+    def get_id(self):
+        return self.__id
+
     def get_last_login(self):
         return self.__last_login
 

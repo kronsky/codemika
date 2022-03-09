@@ -2,7 +2,7 @@
 import item, catalog, user, order
 
 # создаём пользователей
-u1 = user.User('Ивван', 'Петров', '+79997652356')
+u1 = user.User('Иван', 'Петров', '+79997652356')
 u2 = user.User('Игорь', 'Смирнов', '+79875672334')
 
 # создаём товары
@@ -18,12 +18,12 @@ cat_multimedia = catalog.Catalog('Multimedia')
 cat_tv = catalog.Catalog('TV', cat_multimedia)
 
 o1 = order.Order(u1)    # создаём заказ
+o1.add_item(i3)         # добавляем итем
 o1.add_item(i1)         # добавляем итем
-o1.add_item(i2)         # добавляем итем
 o1.bay()                # совершаем покупку
 
 o2 = order.Order(u2)    # создаём заказ
-o2.add_item(i3)         # добавляем итем
+o2.add_item(i2)         # добавляем итем
 o2.bay()                # совершаем покупку
 
 print(o1)               # смотрим первый заказ
