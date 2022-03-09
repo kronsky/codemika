@@ -1,6 +1,9 @@
+from order import Order
+
+
 class Item:
     __last_id = 0
-    __items = dict()
+    __items = []
 
     def __init__(self, title, description, price):
         Item.__last_id += 1
@@ -8,7 +11,7 @@ class Item:
         self.title = title
         self.description = description
         self.price = price
-        Item.__items[self.__id] = self
+        Item.__items.append(self)
 
     def __str__(self):
         return str(self.title) + ' (id=' + str(self.__id) + ')'
@@ -27,6 +30,15 @@ class Item:
 
     def get_id(self):
         return self.__id
+
+    # получаем количество проданных товаров
+    def get_counter_sold_item(self):
+        item_counter = 0
+        for list_order in Order.get_orders():
+            for dict_order in list_order.values():
+                if self.title in dict_order:
+                    item_counter += 1
+        return item_counter
 
 
 class ItemList:

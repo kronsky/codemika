@@ -3,7 +3,7 @@ import datetime
 
 class Order:
     __last_id = 0
-    __orders = dict()
+    __orders = []
 
     def __init__(self, user):
         Order.__last_id += 1
@@ -17,20 +17,22 @@ class Order:
 
     def add_item(self, item):
         # добавляем id итема в список заказа
-        self.order_list.append(item.get_id())
+        self.order_list.append(item)
 
     def remove_item(self, item):
         self.order_list.remove(item)
 
     def buy(self):
-        # якобы покупка
-        # запись ордера в словарь
-        Order.__orders[self.__id] = self
+        # якобы покупка, запись в __orders
+        orders = dict()
+        orders[self.user] = self.order_list
+        orders['date'] = self.__date
+        Order.__orders.append(orders)
 
     @staticmethod
     def print_orders():
-        for order in Order.__orders.items():
-            print(order[1])
+        for order in Order.__orders:
+            print(order)
 
     @staticmethod
     def get_orders():

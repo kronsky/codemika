@@ -1,11 +1,10 @@
 import re
-import datetime
-import order
+from order import Order
 
 
 class User:
     __last_id = 0
-    __users = dict()
+    __users = []
 
     def __init__(self, name, surname, phone):
         User.__last_id += 1
@@ -13,8 +12,7 @@ class User:
         self.name = name
         self.surname = surname
         self.phone = phone
-        self.__last_login = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-        User.__users[self.__id] = self
+        User.__users.append(self)
 
     def __str__(self):
         return str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' (id=' + str(self.__id) + ')'
@@ -58,9 +56,36 @@ class User:
     def get_id(self):
         return self.__id
 
-    def get_last_login(self):
-        return self.__last_login
-
     @staticmethod
     def get_users_object():
         return User.__users
+
+    # получаем список покупок пользователя
+    def get_orders_by_user(self):
+        order_list = []
+        for order in Order.get_orders():
+            if self.phone in order:
+                order_list = order_list + order[self.phone]
+        return order_list
+
+
+class Administrator(User):
+    __last_id = 0
+
+    def __init__(self, name, surname, phone):
+        super(Administrator, self).__init__(name, surname, phone)
+        Administrator.__last_id += 1
+        self.__id = Administrator.__last_id
+
+    def add_item(self):
+        pass
+
+    def remove_item(self):
+        pass
+
+    def add_catalog(self):
+        pass
+
+    def remove_catalog(self):
+        pass
+
