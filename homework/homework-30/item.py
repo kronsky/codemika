@@ -11,7 +11,7 @@ class Item:
         Item.__items[self.__id] = self
 
     def __str__(self):
-        return 'id=' + str(self.__id) + ',' + str(self.title)
+        return str(self.title) + ' (id=' + str(self.__id) + ')'
 
     @property
     def price(self):

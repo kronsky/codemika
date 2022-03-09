@@ -13,7 +13,7 @@ class Order:
         self.__date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
 
     def __str__(self):
-        return 'id=' + str(self.__id) + ',' + str(self.user) + ',' + str(self.order_list)
+        return str(self.__id) + '. ' + str(self.user) + ' ' + str(self.order_list)
 
     def add_item(self, item):
         # добавляем id итема в список заказа
@@ -22,16 +22,21 @@ class Order:
     def remove_item(self, item):
         self.order_list.remove(item)
 
-    def bay(self):
+    def buy(self):
         # якобы покупка
         # запись ордера в словарь
         Order.__orders[self.__id] = self
 
     @staticmethod
-    def get_last_id():
-        return Order.__last_id
+    def print_orders():
+        for order in Order.__orders.items():
+            print(order[1])
 
     @staticmethod
     def get_orders():
         return Order.__orders
+
+    @staticmethod
+    def get_last_id():
+        return Order.__last_id
 

@@ -1,5 +1,6 @@
 import re
 import datetime
+import order
 
 
 class User:
@@ -16,7 +17,7 @@ class User:
         User.__users[self.__id] = self
 
     def __str__(self):
-        return 'id=' + str(self.__id) + ',' + str(self.name) + ',' + str(self.surname) + ',' + str(self.phone)
+        return str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' (id=' + str(self.__id) + ')'
 
     @property
     def phone(self):
