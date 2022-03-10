@@ -9,13 +9,6 @@ userbase = UserDatabase()
 # берём товары из базы
 itembase = ItemDatabase()
 
-# создаём каталоги
-cat_appliances = Catalog('Appliances')
-cat_computers = Catalog('Computers')
-cat_notebooks = Catalog('Notebooks', cat_computers)
-cat_multimedia = Catalog('Multimedia')
-cat_tv = Catalog('TV', cat_multimedia)
-
 # совершаем покупки
 # понятно, что работая с БД мы бы использовали id,
 # но в текущих условиях у пользователя будем брать номер телефона,
@@ -48,12 +41,15 @@ print()
 Order.print_orders()
 print()
 
-# # списки покупок пользователей
+# списки покупок пользователей
 print(userbase.get_user(1), 'купил:', userbase.get_user(1).get_orders_by_user())
 print(userbase.get_user(2), 'купил:', userbase.get_user(2).get_orders_by_user())
 print()
 
-# # сколько продано предметов
+# сколько продано предметов
 print(itembase.get_item(2).title, 'продано в количестве:', itembase.get_item(2).get_counter_sold_item(), 'шт.')
 print(itembase.get_item(5).title, 'продано в количестве:', itembase.get_item(5).get_counter_sold_item(), 'шт.')
 print(itembase.get_item(8).title, 'продано в количестве:', itembase.get_item(8).get_counter_sold_item(), 'шт.')
+print()
+
+itembase.add_item('Стул', 'Икея', 10)

@@ -77,12 +77,6 @@ class Administrator(User):
     def remove_item(self):
         pass
 
-    def add_catalog(self):
-        pass
-
-    def remove_catalog(self):
-        pass
-
 
 class UserDatabase:
     def __init__(self):
@@ -97,6 +91,3 @@ class UserDatabase:
         if not user:
             raise ValueError(user_id)
         return user
-
-    # def _create_user(self, title, description, price):
-    #     return Item(title, description, price)
