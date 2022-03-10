@@ -4,7 +4,6 @@ from order import Order
 
 class User:
     __last_id = 0
-    __users = []
 
     def __init__(self, name, surname, phone):
         User.__last_id += 1
@@ -12,7 +11,6 @@ class User:
         self.name = name
         self.surname = surname
         self.phone = phone
-        User.__users.append(self)
 
     def __str__(self):
         return str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' (id=' + str(self.__id) + ')'
@@ -56,10 +54,6 @@ class User:
     def get_id(self):
         return self.__id
 
-    @staticmethod
-    def get_users_object():
-        return User.__users
-
     # получаем список покупок пользователя
     def get_orders_by_user(self):
         order_list = []
@@ -89,3 +83,20 @@ class Administrator(User):
     def remove_catalog(self):
         pass
 
+
+class UserDatabase:
+    def __init__(self):
+        self._user_database = {
+            1: User('Иван', 'Зайчиков', '+79997652356'),
+            2: User('Евгений', 'Бочонкин', '+79875672334'),
+            3: User('Мария', 'Капустина', '+79875987345'),
+        }
+
+    def get_user(self, user_id):
+        user = self._user_database.get(user_id)
+        if not user:
+            raise ValueError(user_id)
+        return user
+
+    # def _create_user(self, title, description, price):
+    #     return Item(title, description, price)
