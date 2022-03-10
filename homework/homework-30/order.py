@@ -41,4 +41,3 @@ class Order:
     @staticmethod
     def get_last_id():
         return Order.__last_id
-

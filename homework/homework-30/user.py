@@ -1,5 +1,5 @@
 import re
-from order import Order
+from item import *
 
 
 class User:

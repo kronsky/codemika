@@ -1,6 +1,4 @@
-from item import *
 from user import *
-from order import *
 
 # создаём администратора
 administrator = Administrator('Админ', 'Админович', '+79875987345')
