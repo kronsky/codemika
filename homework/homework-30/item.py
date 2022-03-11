@@ -18,7 +18,6 @@ class Item:
     def price(self):
         return self.__price
 
-    # сеттер стоимости товара, проверка на инт
     @price.setter
     def price(self, price):
         try:
@@ -59,8 +58,24 @@ class ItemDatabase:
             raise ValueError(item_id)
         return item
 
-    def add_item(self, title, description, price):
-        pass
+    # вываливаем в консоль список всех товаров
+    def print_items(self):
+        print('____ список всех товаров в базе: ____')
+        for line in self.item_database.items():
+            print('# ', line[1].title, ' (id=', line[1].get_id(), ')', sep='')
+        print('_____________________________________')
 
-    def remove_item(self, id_item):
-        pass
+    def add_item(self, title, description, price):
+        # берём максимальное значение ключа (номер строки в базе) и делаем +1
+        last_line = max(self.item_database.keys())
+        last_line += 1
+        # обновляем словарь новой парой
+        new_item = {last_line: Item(title, description, price)}
+        self.item_database.update(new_item)
+
+    def remove_item(self, id_removable_item):
+        for line in self.item_database.items():
+            id_item = line[1].get_id()
+            if id_item == id_removable_item:
+                self.item_database.pop(line[0])
+                break

@@ -16,7 +16,6 @@ class Order:
         return str(self.__id) + '. ' + str(self.user) + ' ' + str(self.order_list)
 
     def add_item(self, item):
-        # добавляем id итема в список заказа
         self.order_list.append(item)
 
     def remove_item(self, item):

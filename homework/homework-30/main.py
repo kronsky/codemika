@@ -38,18 +38,27 @@ order_4.buy()
 print()
 
 # смотрим все заказы
+print('=> список всех совершенных заказов: ')
 Order.print_orders()
 print()
 
-# списки покупок пользователей
+# списки покупок выбранных пользователей
+print('=> список покупок пользователей: ')
 print(userbase.get_user(1), 'купил:', userbase.get_user(1).get_orders_by_user())
 print(userbase.get_user(2), 'купил:', userbase.get_user(2).get_orders_by_user())
 print()
 
-# сколько продано предметов
+# сколько продано выбранных предметов
+print('=> количество проданных предметов: ')
 print(itembase.get_item(2).title, 'продано в количестве:', itembase.get_item(2).get_counter_sold_item(), 'шт.')
 print(itembase.get_item(5).title, 'продано в количестве:', itembase.get_item(5).get_counter_sold_item(), 'шт.')
 print(itembase.get_item(8).title, 'продано в количестве:', itembase.get_item(8).get_counter_sold_item(), 'шт.')
 print()
 
-itembase.add_item('Стул', 'Икея', 10)
+print('=> добавление в базу нового товара: ')
+administrator.add_item(itembase)        # создадим новый товар
+itembase.print_items()                  # смотрим все товары
+print('=> удаление товара из базы: ')
+administrator.remove_item(itembase)     # удалим товар
+itembase.print_items()                  # смотрим все товары
+print()

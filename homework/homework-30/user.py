@@ -19,7 +19,6 @@ class User:
     def phone(self):
         return self.__phone
 
-    # сеттер телефонного номера, проверка через регулярное выражение
     @phone.setter
     def phone(self, phone):
         if re.match(r'^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$', phone):
@@ -31,7 +30,6 @@ class User:
     def name(self):
         return self.__name
 
-    # сеттер имени пользователя, проверка через регулярное выражение
     @name.setter
     def name(self, name):
         if re.fullmatch(r'[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+)?', name):
@@ -43,7 +41,6 @@ class User:
     def surname(self):
         return self.__surname
 
-    # сеттер фамилии пользователя, проверка через регулярное выражение
     @surname.setter
     def surname(self, surname):
         if re.fullmatch(r'[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+)?', surname):
@@ -71,11 +68,17 @@ class Administrator(User):
         Administrator.__last_id += 1
         self.__id = Administrator.__last_id
 
-    def add_item(self):
-        pass
+    @staticmethod
+    def add_item(itembase):
+        title = input('Введите название товара: ')
+        description = input('Введите описание товара: ')
+        price = input('Введите стоимость товара: ')
+        itembase.add_item(title, description, price)
 
-    def remove_item(self):
-        pass
+    @staticmethod
+    def remove_item(itembase):
+        id_removable_item = int(input('Введите id товара, который нужно удалить: '))
+        itembase.remove_item(id_removable_item)
 
 
 class UserDatabase:
