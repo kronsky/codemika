@@ -1,7 +1,12 @@
+# Все задумки вроде-бы реализовал. Если у проверяющего возникнут
+# вопросы - звоните, пишите, на все отвечу.
+# С каталогами не стал заморачиваться, не хватает времени.
+# UML добавлю 11 марта вечером.
+
 from user import *
 
 # создаём администратора
-administrator = Administrator('Админ', 'Админович', '+79875987345')
+administrator = Administrator('Админ', 'Петрович', '+79875987345')
 
 # берём пользователей из базы
 userbase = UserDatabase()
@@ -11,8 +16,8 @@ itembase = ItemDatabase()
 
 # совершаем покупки
 # понятно, что работая с БД мы бы использовали id,
-# но в текущих условиях у пользователя будем брать номер телефона,
-# а у товара наименование как уникальные значения
+# но в текущих условиях и для наглядности у пользователя будем брать
+# номер телефона, а у товара наименование как уникальные значения
 
 # создаём заказ:
 order_1 = Order(userbase.get_user(1).phone)
@@ -37,18 +42,15 @@ order_4.add_item(itembase.get_item(5).title)
 order_4.buy()
 print()
 
-# смотрим все заказы
 print('=> список всех совершенных заказов: ')
 Order.print_orders()
 print()
 
-# списки покупок выбранных пользователей
 print('=> список покупок пользователей: ')
 print(userbase.get_user(1), 'купил:', userbase.get_user(1).get_orders_by_user())
 print(userbase.get_user(2), 'купил:', userbase.get_user(2).get_orders_by_user())
 print()
 
-# сколько продано выбранных предметов
 print('=> количество проданных предметов: ')
 print(itembase.get_item(2).title, 'продано в количестве:', itembase.get_item(2).get_counter_sold_item(), 'шт.')
 print(itembase.get_item(5).title, 'продано в количестве:', itembase.get_item(5).get_counter_sold_item(), 'шт.')
