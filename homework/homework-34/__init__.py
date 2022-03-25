@@ -15,9 +15,13 @@ def start(message):
 def text(message):
     language = message.from_user.language_code
     city = message.text
-    desc, temp, city = weather.get(city, language)
-    mess = f'Погода в городе {city}\nТемпература: {temp} °C\n{desc}'
-    bot.send_message(message.chat.id, mess)
+    city_id = weather.get_city_id(city, language)
+    if type(city_id) == int:
+        desc, temp, city = weather.get(city_id, language)
+        mess = f'Погода в городе {city}\nТемпература: {temp} °C\n{desc}'
+        bot.send_message(message.chat.id, mess)
+    else:
+        bot.send_message(message.chat.id, 'Город не найден')
 
 
 bot.polling(none_stop=True)
