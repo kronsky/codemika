@@ -43,17 +43,17 @@ def query_handler(call):
             if file['filename'] == call.data[4:]:
                 bot.send_document(call.message.chat.id, file['file_id'])
     elif call.data[:3] == 'del':
+
         print('DEL: функция не доделана')
+
+        bot.send_message(call.message.chat.id, 'Файл ' + call.data[4:] + ' удалён')
     # убираем кнопки
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 
 @bot.message_handler(content_types=['text'])
 def text(message):
-    files_list = filestore.get_files_list()
-    for file in files_list:
-        if file['filename'] == message.text:
-            bot.send_document(message.chat.id, file['file_id'])
+    bot.send_message(message.chat.id, 'Введи команду или загрузи файл')
 
 
 @bot.message_handler(content_types=['document'])
@@ -63,7 +63,6 @@ def up_document(message):
     caption = message.caption
     file_info = bot.get_file(document_id)
     if caption:
-        # print(f'http://api.telegram.org/file/bot{config.telegram_token}/{file_info.file_path}')
         bot.send_message(message.chat.id, 'Файл ' + filename + ' сохранён. ' + 'Ссылка на файл: ' +
                          f'http://api.telegram.org/file/bot{config.telegram_token}/{file_info.file_path}')
         filestore.write_file_info(document_id, filename, caption)
