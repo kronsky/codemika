@@ -37,14 +37,15 @@ def delete(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
+    files_list = filestore.get_files_list()
     if call.data[:3] == 'get':
-        files_list = filestore.get_files_list()
         for file in files_list:
             if file['filename'] == call.data[4:]:
                 bot.send_document(call.message.chat.id, file['file_id'])
     elif call.data[:3] == 'del':
-
-        print('DEL: функция не доделана')
+        for file in files_list:
+            if file['filename'] == call.data[4:]:
+                files_list.remove(file)
 
         bot.send_message(call.message.chat.id, 'Файл ' + call.data[4:] + ' удалён')
     # убираем кнопки

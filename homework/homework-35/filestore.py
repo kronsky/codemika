@@ -17,6 +17,11 @@ def write_file_info(file_id, filename, caption):
         json.dump(filelist, file, ensure_ascii=False)
 
 
+def write_list(filelist):
+    with open('files.json', 'w') as file:
+        json.dump(filelist, file, ensure_ascii=False)
+
+
 def get_files_list():
     with open('files.json') as file:
         try:
