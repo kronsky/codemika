@@ -12,7 +12,8 @@ def start(message):
     button_get = types.KeyboardButton('/get',)
     button_del = types.KeyboardButton('/del', )
     menu.add(button_get, button_del)
-    bot.send_message(message.chat.id, text='...', reply_markup=menu)
+    name = message.from_user.first_name
+    bot.send_message(message.chat.id, text='Привет, ' + name, reply_markup=menu)
 
 
 @bot.message_handler(commands=['get'])
@@ -46,7 +47,7 @@ def query_handler(call):
         for file in files_list:
             if file['filename'] == call.data[4:]:
                 files_list.remove(file)
-
+                filestore.write_list(files_list)
         bot.send_message(call.message.chat.id, 'Файл ' + call.data[4:] + ' удалён')
     # убираем кнопки
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
