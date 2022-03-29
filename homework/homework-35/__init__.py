@@ -64,12 +64,9 @@ def up_document(message):
     filename = message.document.file_name
     caption = message.caption
     file_info = bot.get_file(document_id)
-    if caption:
-        bot.send_message(message.chat.id, 'Файл ' + filename + ' сохранён. ' + 'Ссылка на файл: ' +
-                         f'http://api.telegram.org/file/bot{config.telegram_token}/{file_info.file_path}')
-        filestore.write_file_info(document_id, filename, caption)
-    else:
-        bot.send_message(message.chat.id, 'Не указана подпись файла!')
+    bot.send_message(message.chat.id, 'Файл ' + filename + ' сохранён. ' + 'Ссылка на файл: ' +
+                     f'http://api.telegram.org/file/bot{config.telegram_token}/{file_info.file_path}')
+    filestore.write_file_info(message.chat.id, document_id, filename, caption)
 
 
 @bot.message_handler(content_types=['photo'])
