@@ -18,7 +18,7 @@ def start(message):
 
 @bot.message_handler(commands=['get'])
 def get(message):
-    files_list = filestore.get_files_list()
+    files_list = filestore.get_files_list(message.chat.id)
     buttons = types.InlineKeyboardMarkup()
     for file in files_list:
         callback = 'get:' + file['filename']
@@ -28,7 +28,7 @@ def get(message):
 
 @bot.message_handler(commands=['del'])
 def delete(message):
-    files_list = filestore.get_files_list()
+    files_list = filestore.get_files_list(message.chat.id)
     buttons = types.InlineKeyboardMarkup()
     for file in files_list:
         callback = 'del:' + file['filename']
@@ -38,7 +38,7 @@ def delete(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
-    files_list = filestore.get_files_list()
+    files_list = filestore.get_files_list(call.message.chat.id)
     if call.data[:3] == 'get':
         for file in files_list:
             if file['filename'] == call.data[4:]:
@@ -47,7 +47,7 @@ def query_handler(call):
         for file in files_list:
             if file['filename'] == call.data[4:]:
                 files_list.remove(file)
-                filestore.write_list(files_list)
+                filestore.write_list(call.message.chat.id, files_list)
         bot.send_message(call.message.chat.id, 'Файл ' + call.data[4:] + ' удалён')
     # убираем кнопки
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)

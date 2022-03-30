@@ -9,34 +9,41 @@ def write_file_info(chat_id, file_id, filename, caption):
             chats = dict()
     chat_id = str(chat_id)
     if chat_id in chats:
-        print('Key found')
-
-
-
-
+        file = {
+            'file_id': file_id,
+            'filename': filename,
+            'caption': caption
+        }
+        chats[chat_id].append(file)
     else:
         ch_dict = {chat_id: [{
             'file_id': file_id,
             'filename': filename,
             'caption': caption
         }]}
-        print(chats)
-        print(ch_dict)
         chats.update(ch_dict)
-        print(chats)
     with open('files.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(chats, ensure_ascii=False))
 
 
-def write_list(filelist):
-    with open('files.json', 'w') as file:
-        json.dump(filelist, file, ensure_ascii=False)
+def write_list(chat_id, filelist):
+    chat_id = str(chat_id)
+    with open('files.json', 'w', encoding='utf-8') as file:
+        chats = json.load(file)
+
+        chats.update(chat_id, filelist)
+
+        file.write(json.dumps(chats, ensure_ascii=False))
+
+        # доделать
 
 
-def get_files_list():
+def get_files_list(chat_id):
     with open('files.json') as file:
         try:
-            filelist = json.load(file)
+            chats = json.load(file)
         except ValueError:
-            filelist = []
-    return filelist
+            chats = dict()
+    chat_id = str(chat_id)
+    return chats[chat_id]
+    # сделать проверку не пустой ли джейсон
