@@ -42,9 +42,7 @@ def get_files_list(chat_id):
         except ValueError:
             chats = dict()
     chat_id = str(chat_id)
-
     if chat_id in chats:
         return chats[chat_id]
     else:
         return list()
-    # сделать проверку не пустой ли джейсон
