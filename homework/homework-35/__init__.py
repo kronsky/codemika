@@ -49,8 +49,7 @@ def query_handler(call):
                 files_list.remove(file)
                 filestore.write_list(call.message.chat.id, files_list)
         bot.send_message(call.message.chat.id, 'Файл ' + call.data[4:] + ' удалён')
-    # убираем кнопки
-    bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
+    bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)    # убираем кнопки
 
 
 @bot.message_handler(content_types=['text'])

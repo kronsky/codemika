@@ -28,14 +28,11 @@ def write_file_info(chat_id, file_id, filename, caption):
 
 def write_list(chat_id, filelist):
     chat_id = str(chat_id)
-    with open('files.json', 'w', encoding='utf-8') as file:
+    with open('files.json', 'r', encoding='utf-8') as file:
         chats = json.load(file)
-
-        chats.update(chat_id, filelist)
-
+    chats[chat_id] = filelist
+    with open('files.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(chats, ensure_ascii=False))
-
-        # доделать
 
 
 def get_files_list(chat_id):
@@ -45,5 +42,9 @@ def get_files_list(chat_id):
         except ValueError:
             chats = dict()
     chat_id = str(chat_id)
-    return chats[chat_id]
+
+    if chat_id in chats:
+        return chats[chat_id]
+    else:
+        return list()
     # сделать проверку не пустой ли джейсон
