@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'homework_40.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'codemika',
+        'USER': 'gregory',
+        'PASSWORD': 'MPLbDOTpN8z4evc',
+        'HOST': '141.8.199.159',
+        'PORT': '5432'
     }
 }
 
