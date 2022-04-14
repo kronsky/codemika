@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import Task
 from .forms import TaskForm
 
+from rest_framework import viewsets
+from .serializers import TaskSerializer
+
 
 def index(request):
     tasks = Task.objects.all()
@@ -26,3 +29,8 @@ def task(request):
         'form': form
     }
     return render(request, 'main/task.html', context)
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all().order_by('id')
+    serializer_class = TaskSerializer
