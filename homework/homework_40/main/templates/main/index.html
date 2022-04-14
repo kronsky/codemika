@@ -1,29 +1,39 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-    {{ title }}
+Главная страница
 {% endblock %}
 
 {% block header %}
-    {{ header }}
+
 {% endblock %}
 
 {% block body %}
-    {% if tasks %}
-        {% for task in tasks %}
-            <div class="alert alert-success" role="alert">
-                <div class="input-group mb-3">
-                    <div class="input-group-text">
-                        <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-                    </div>
-                    <input disabled="disabled" value="{{ task.title }}" type="text" class="form-control" aria-label="Text input with checkbox">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="card">
+                <h5 class="card-header">Список задач</h5>
+                <div class="card-body">
+                    <p class="card-text">Вы можете смотреть список задач, отмечать выполненные, создавать новые</p>
+                    <a href="{% url 'tasklist' %}" class="card-link">Список задач</a>
+                    <a href="{% url 'taskcreate' %}" class="card-link">Создать задачу</a>
                 </div>
-                <p>{{ task.description }}</p>
             </div>
-        {% endfor %}
-    {% else %}
-        <div class="alert alert-danger" role="alert">
-            Список дел пуст
         </div>
-    {% endif %}
+        <div class="col-sm">
+            <div class="card">
+                <h5 class="card-header">Статьи</h5>
+                <div class="card-body">
+                    <p class="card-text">Вы можете читать интересные статьи и создавать новые</p>
+                    <a href="{% url 'postlist' %}" class="card-link">Статьи</a>
+                    <a href="{% url 'postcreate' %}" class="card-link">Создать статью</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

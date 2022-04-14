@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {{ header }}
+{% endblock %}
+
+{% block body %}
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="alert alert-success" role="alert">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+                    </div>
+                    <input disabled="disabled" value="{{ task.title }}" type="text" class="form-control" aria-label="Text input with checkbox">
+                </div>
+                <p>{{ task.description }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Список дел пуст
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block body %}
+    <p><a href="{% url 'postcreate' %}" class="btn btn-secondary btn-lg btn-block">Создать новую статью</a></p>
+    {% if posts %}
+        {% for post in posts %}
+
+            <p><div class="card">
+                <div class="card-header">
+                    {{ post.title }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.description }}</p>
+                </div>
+                <div class="card-footer">
+                    Дата последнего обновления
+                </div>
+            </div></p>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Статей нет
+        </div>
+    {% endif %}
+{% endblock %}

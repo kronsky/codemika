@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Создание статьи
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Название статьи</label>
+        {{ form.title }}
+        <div id="titleHelp" class="form-text">Максимум 100 символов</div>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Текст</label>
+        {{ form.description }}
+        <div id="descriptionHelp" class="form-text">Максимум 1000 символов</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить статью</button>
+</form>
+{% endblock %}
