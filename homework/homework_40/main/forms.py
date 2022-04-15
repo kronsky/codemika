@@ -1,5 +1,5 @@
 from .models import Task, Post
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, Textarea
 
 
 class TaskForm(ModelForm):
@@ -30,7 +30,7 @@ class PostForm(ModelForm):
                 "id": "title",
                 "aria-describedby": "titleHelp"
             }),
-            "description": TextInput(attrs={
+            "description": Textarea(attrs={
                 "class": "form-control",
                 "id": "description",
                 "aria-describedby": "descriptionHelp"

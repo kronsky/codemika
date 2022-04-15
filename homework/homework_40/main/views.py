@@ -3,7 +3,7 @@ from .models import Task, Post
 from .forms import TaskForm, PostForm
 
 from rest_framework import viewsets
-from .serializers import TaskSerializer
+from .serializers import TaskSerializer, PostSerializer
 
 
 def index(request):
@@ -55,3 +55,8 @@ def postcreate(request):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all().order_by('id')
     serializer_class = TaskSerializer
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('id')
+    serializer_class = PostSerializer
