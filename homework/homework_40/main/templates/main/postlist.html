@@ -21,13 +21,13 @@
                     <p class="card-text">{{ post.description }}</p>
                 </div>
                 <div class="card-footer">
-                    вывы
+                    Дата создания - {{ post.datecreate }}, дата последнего обновления - {{ post.dateupdate }}
                 </div>
             </div></p>
         {% endfor %}
     {% else %}
         <div class="alert alert-danger" role="alert">
-            Статей нет
+            Статей пока нет, создайте первую статью
         </div>
     {% endif %}
 {% endblock %}
